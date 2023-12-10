@@ -1,6 +1,7 @@
 # Коллективный проект
 
 Нам необходимо закончить работу к 18.12.2023!
+
 Ссылка на базу данных: https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data
 
 ### Распределение задач:
