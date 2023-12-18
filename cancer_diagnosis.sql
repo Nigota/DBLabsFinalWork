@@ -29,3 +29,8 @@ INSERT INTO CancerType (type, diagnos) VALUES ('SomeType', 'M');
 INSERT INTO CellNucleus (radius, texture, perimeter, area, smoothness, 
 compactness, concavity, concave_points, symmetry, fractal_dimension) 
 VALUES (17.99, 10.38, 122.8, 1001, 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871);
+
+ALTER TABLE CellNucleus
+ADD CONSTRAINT fk_typeid
+    FOREIGN KEY (typeid)
+    REFERENCES CancerType(typeid);
