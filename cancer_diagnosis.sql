@@ -32,6 +32,13 @@ INSERT INTO CellNucleus (typeid, radius, texture, perimeter, area, smoothness, c
 concavity, concave_points, symmetry, fractal_dimension) VALUES (1, 17.99, 10.38, 122.8, 
 1001, 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871);
 
+/*
+Возможное появление ошибок:
+1. Программа ругается на путь к файлу: возможно в пути есть кириллица
+2. Программа ругается на доступ к файлу: в файле my.ini (C:\ProgramData\MySQL\MySQL Server 8.0)
+надо поменять secure-file-priv="Тут какой-то путь" -> secure-file-priv="",
+т.е просто стереть этот путь и всё
+*/
 LOAD DATA INFILE 'путь к data.csv'
 INTO TABLE CellNucleus
 FIELDS TERMINATED BY ','
