@@ -39,8 +39,27 @@ concavity, concave_points, symmetry, fractal_dimension) VALUES (1, 17.99, 10.38,
 надо поменять secure-file-priv="Тут какой-то путь" -> secure-file-priv="",
 т.е просто стереть этот путь и всё
 */
-LOAD DATA INFILE 'путь к data.csv'
-INTO TABLE CellNucleus
+
+CREATE TEMPORARY TABLE tempCellNucleus (
+    typeid INT,
+    radius FLOAT,
+    texture FLOAT,
+    perimeter FLOAT,
+    area FLOAT,
+    smoothness FLOAT,
+    compactness FLOAT,
+    concavity FLOAT,
+    concave_points FLOAT,
+    symmetry FLOAT,
+    fractal_dimension FLOAT
+);
+
+LOAD DATA LOCAL INFILE 'C:\Program Files\MySQL\MySQL Workbench 8.0 CE\data\data.csv'
+INTO TABLE tempCellNucleus
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
+IGNORE 1 LINES;
+
+INSERT INTO CellNucleus (typeid, radius, texture, perimeter, area, smoothness, compactness, 
+concavity, concave_points, symmetry, fractal_dimension)
+SELECT * FROM tempCellNucleus;
