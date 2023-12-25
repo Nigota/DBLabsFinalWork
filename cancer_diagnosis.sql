@@ -1,15 +1,15 @@
-CREATE DATABASE cancer_diagnosis;
+CREATE DATABASE IF NOT EXISTS cancer_diagnosis;
 
 USE cancer_diagnosis;
 
-CREATE TABLE CancerType (
+CREATE TABLE IF NOT EXISTS CancerType (
     typeid INT NOT NULL AUTO_INCREMENT,
     type VARCHAR(100),
     diagnos VARCHAR(1),
     PRIMARY KEY (typeid)
 );
 
-CREATE TABLE CellNucleus (
+CREATE TABLE IF NOT EXISTS CellNucleus (
     id INT NOT NULL AUTO_INCREMENT,
     typeid INT,
     radius FLOAT,
@@ -54,7 +54,7 @@ CREATE TEMPORARY TABLE tempCellNucleus (
     fractal_dimension FLOAT
 );
 
-LOAD DATA LOCAL INFILE 'C:\Program Files\MySQL\MySQL Workbench 8.0 CE\data\data.csv'
+LOAD DATA INFILE 'C://Users//Nikita//Desktop//data.csv'
 INTO TABLE tempCellNucleus
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
