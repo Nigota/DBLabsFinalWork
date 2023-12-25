@@ -44,10 +44,12 @@ START TRANSACTION;
     (id, diagnosis, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
     compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean)
     
-    INSERT INTO ()
-    SELECT ;
+    INSERT INTO CancerType (typeid, diagnosis)
+    SELECT id, diagnosis FROM temp_table;
     
-    INSERT INTO ()
-    SELECT ;
+    INSERT INTO CellNucleus (typeid, radius, texture, perimeter, area, smoothness, 
+    compactness, concavity, concave_points, symmetry, fractal_dimension)
+    SELECT id, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
+    compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean FROM temp_table;
     
 COMMIT;

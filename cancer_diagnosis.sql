@@ -5,7 +5,7 @@ USE cancer_diagnosis;
 CREATE TABLE IF NOT EXISTS CancerType (
     typeid INT NOT NULL AUTO_INCREMENT,
     type VARCHAR(100),
-    diagnos VARCHAR(1),
+    diagnosis VARCHAR(1),
     PRIMARY KEY (typeid)
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS CellNucleus (
     FOREIGN KEY (typeid) REFERENCES CancerType(typeid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO CancerType (type, diagnos) VALUES ('SomeType', 'M');
+INSERT INTO CancerType (type, diagnosis) VALUES ('SomeType', 'M');
 
 INSERT INTO CellNucleus (typeid, radius, texture, perimeter, area, smoothness, compactness, 
 concavity, concave_points, symmetry, fractal_dimension) VALUES (1, 17.99, 10.38, 122.8, 
