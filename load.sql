@@ -36,20 +36,21 @@ START TRANSACTION;
     symmetry_worst FLOAT,
     fractal_dimension_worst FLOAT
 );
-    LOAD DATA INFILE 'Nigota/DBLabsFinalWork/data.csv'
+    LOAD DATA INFILE 'C://Users//Nikita//Desktop//data.csv'
 	INTO TABLE temp_table
     FIELDS OPTIONALLY ENCLOSED BY '"' TERMINATED BY ','
     LINES TERMINATED BY '\r\n'
-    IGNORE 1 LINES
-    (id, diagnosis, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
-    compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean)
+    IGNORE 1 LINES;
     
-    INSERT INTO CancerType (typeid, diagnosis)
-    SELECT id, diagnosis FROM temp_table;
+    INSERT INTO CancerType (type, diagnosis) VALUES
+      ("Some Type", "M"),
+      ("Some Type", "B");
     
     INSERT INTO CellNucleus (typeid, radius, texture, perimeter, area, smoothness, 
     compactness, concavity, concave_points, symmetry, fractal_dimension)
-    SELECT id, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
-    compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean FROM temp_table;
-    
+    SELECT typeid, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
+    compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean 
+      FROM temp_table
+        JOIN CancerType ON CancerType.diagnosis = temp_table.diagnosis;
+
 COMMIT;
