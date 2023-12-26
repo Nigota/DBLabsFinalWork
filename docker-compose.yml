@@ -1,25 +1,25 @@
-
 version: '3.11'
+
 services:
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-  adminer:
-    image: adminer
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 8080:8080
-mysql:
+     - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    depends_on:
+      - mysql
+
+  mysql:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: propovedi88
-      MYSQL_DATABASE: cd
-      MYSQL_USER: root  
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: notSecurePassword
+      MYSQL_DATABASE: cancer-diagnosis
+      MYSQL_USER: sql_user
+      MYSQL_PASSWORD: mysql411
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
-    command: --init-file /docker-entrypoint-initdb.d/club-data.sql
+      - ./data.csv:/var/lib/mysql-files/data.csv
+      - ./sql/docker:/docker-entrypoint-initdb.d
